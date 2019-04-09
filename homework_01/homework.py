@@ -132,5 +132,13 @@ def simple_sort(data: List[int]) -> List[list]:
     Returns:
 
     """
-    data.sort()
+    count = 1
+    while count == 1:
+        element_num = 0
+        count = 0
+        for element_num in range(len(data) - 1):
+            if data[element_num] > data[element_num + 1]:
+                data[element_num], data[element_num + 1] = data[element_num + 1], data[element_num]
+                count = 1
+
     return (data)
