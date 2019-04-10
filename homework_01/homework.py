@@ -11,7 +11,7 @@ def is_two_object_has_same_value(first: Any, second: Any) -> bool:
     If @first and @second has same value should return True
     In another case should return False
     """
-    return (first == second)
+    return first == second
 
 
 def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
@@ -19,7 +19,7 @@ def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
     If @first and @second has same type should return True
     In another case should return False
     """
-    return (type(first) == type(second))
+    return type(first) == type(second)
 
 
 def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
@@ -27,7 +27,12 @@ def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
     If @first and @second has same type should return True
     In another case should return False
     """
+    """
+    #Old solution
     return (id(first) == id(second))
+    """
+    #New
+    return  first is second
 
 
 def multiple_ints(first_value: int, second_value: int) -> int:
@@ -44,21 +49,29 @@ def multiple_ints(first_value: int, second_value: int) -> int:
     Returns:
         Product of elements
     """
+    """
+    #The previous version
+    
     result = "The incorrect values provided"
     if type(first_value) == int and type(second_value) == int:
         result = first_value * second_value
     else:
         raise ValueError
     return result
+    """
+    #The new one
+    if isinstance(first_value, int) and isinstance(second_value, int):
+        return first_value * second_value
+    else:
+        raise ValueError
 
 
 def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
     try:
-        result = int(first_value) * int(second_value)
+        return int(first_value) * int(second_value)
     except ValueError:
-        print("Not valid input data")
+        raise OurAwesomeException
 
-    return result
 
 
 def is_word_in_text(word: str, text: str) -> bool:
@@ -77,7 +90,7 @@ def is_word_in_text(word: str, text: str) -> bool:
         >>> False
 
     """
-    return (True if word in text else False)
+    return word in text
 
 
 def some_loop_exercise() -> list:
@@ -141,4 +154,4 @@ def simple_sort(data: List[int]) -> List[list]:
                 data[element_num], data[element_num + 1] = data[element_num + 1], data[element_num]
                 count = 1
 
-    return (data)
+    return data
